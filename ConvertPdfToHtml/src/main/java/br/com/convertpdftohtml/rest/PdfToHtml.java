@@ -28,4 +28,13 @@ public class PdfToHtml {
 	public Response convert(String fileName) throws Exception {
 		return Response.status(200).entity(ConvertPdfToHtml.convert(new File(fileName))).build();
 	}
+	
+	@POST
+	@Path("/convertandcreateinpath")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response convertAndCreateInPath(String fileName, String localWriteFile) throws Exception {
+		ConvertPdfToHtml.convertAndCreate(new File(fileName), localWriteFile);
+		return Response.status(200).build();
+	}
 }
