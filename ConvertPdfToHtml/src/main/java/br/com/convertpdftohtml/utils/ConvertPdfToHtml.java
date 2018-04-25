@@ -14,6 +14,7 @@ import org.fit.pdfdom.PDFDomTree;
 public class ConvertPdfToHtml {
 	
 	public static void convertAndCreate(InputStream is, String localWriteFile) throws Exception {
+		System.setProperty("sun.java2d.cmm", "sun.java2d.cmm.kcms.KcmsServiceProvider");
 		PDDocument pdf = PDDocument.load(is);
 		File outputFile = new File(localWriteFile);
 		Writer output = new PrintWriter(outputFile, "utf-8");
@@ -22,6 +23,7 @@ public class ConvertPdfToHtml {
 	}
 	
 	public static void convertAndCreate(File is, String localWriteFile) throws Exception {
+		System.setProperty("sun.java2d.cmm", "sun.java2d.cmm.kcms.KcmsServiceProvider");
 		PDDocument pdf = PDDocument.load(is);
 		File outputFile = new File(localWriteFile);
 		Writer output = new PrintWriter(outputFile, "utf-8");
@@ -30,6 +32,7 @@ public class ConvertPdfToHtml {
 	}
 	
 	public static String convert(InputStream is) throws Exception {
+		System.setProperty("sun.java2d.cmm", "sun.java2d.cmm.kcms.KcmsServiceProvider");
 		PDDocument pdf = PDDocument.load(is);
 		Writer output = new StringWriter();
 		new PDFDomTree().writeText(pdf, output);
@@ -38,11 +41,11 @@ public class ConvertPdfToHtml {
 	}
 	
 	public static String convert(File is) throws Exception {
+		System.setProperty("sun.java2d.cmm", "sun.java2d.cmm.kcms.KcmsServiceProvider");
 		PDDocument pdf = PDDocument.load(is);
 		Writer output = new StringWriter();
 		new PDFDomTree().writeText(pdf, output);
 		pdf.close();
 		return output.toString();
 	}
-
 }

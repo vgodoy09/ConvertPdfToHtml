@@ -1,18 +1,24 @@
 package br.com.convertpdftohtml.utils;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 
+import org.junit.Test;
+
 public class ConvertPdfToHtmlTest {
-	public static void main(String[] args) {
-		File file = new File("\\\\10.21.8.2\\app_data\\email\\attatchment\\1522160848031.pdf");
-		
-		try {
-			String convert = ConvertPdfToHtml.convert(file);
-			System.out.println(convert);
-			ConvertPdfToHtml.convertAndCreate(file, "pdf.html");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+	File file = new File("src\\test\\resources\\1522071837873.pdf");
+
+	@Test
+	public void testaSeConvertePDFtoHTML() throws Exception {
+		String convert = ConvertPdfToHtml.convert(file);
+		assertNotNull(convert);
+	}
+	
+	@Test
+	public void testaSeConvertePDFtoHTMLAndCreate() throws Exception {
+		ConvertPdfToHtml.convertAndCreate(file, "src\\test\\resources\\pdf.html");
+		assertTrue(new File("src\\test\\resources\\pdf.html").exists());
 	}
 }
