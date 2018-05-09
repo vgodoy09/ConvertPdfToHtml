@@ -2,7 +2,7 @@ package br.com.convertpdftohtml.rest;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.InputStream;
 
 import javax.annotation.PostConstruct;
 import javax.ws.rs.Consumes;
@@ -11,8 +11,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import org.apache.commons.io.FileUtils;
 
 import br.com.convertpdftohtml.utils.ConvertPdfToHtml;
 
@@ -38,8 +36,15 @@ public class PdfToHtml {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response convert(byte[] bytes) throws Exception {
-		FileUtils.writeByteArrayToFile(new File("pdf.pdf"), bytes);
-		return Response.status(200).entity(ConvertPdfToHtml.convert(FileUtils.getFile("pdf.pdf"))).build();
+		return Response.status(200).entity(ConvertPdfToHtml.convert(new ByteArrayInputStream(bytes))).build();
+	}
+	
+	@POST
+	@Path("/convertbyinputstream")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response convert(InputStream inputstreams) throws Exception {
+		return Response.status(200).entity(ConvertPdfToHtml.convert(inputstreams)).build();
 	}
 	
 	@POST
@@ -47,8 +52,6 @@ public class PdfToHtml {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response convert(File file) throws Exception {
-		if(file.exists())
-			System.out.println(file.getAbsolutePath()); 
 		return Response.status(200).entity(ConvertPdfToHtml.convert(file)).build();
 	}
 }
