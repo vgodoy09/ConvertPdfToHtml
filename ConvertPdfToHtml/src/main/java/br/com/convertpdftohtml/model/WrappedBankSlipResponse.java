@@ -5,9 +5,8 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-public class WrappedBankSlipResponse implements /*Serializable*/ Externalizable {
+public class WrappedBankSlipResponse implements Externalizable {
 
-//	private static final long serialVersionUID = 1L;
 	private byte[] pdf;
 
 	public WrappedBankSlipResponse() {}
@@ -26,24 +25,11 @@ public class WrappedBankSlipResponse implements /*Serializable*/ Externalizable 
 
 	@Override
 	public void writeExternal(ObjectOutput out) throws IOException {
-//		out.writeInt(pdf.length);
 		out.write(pdf, 0, pdf.length);
-//		out.writeInt(pdf.length);
-//	    for (int i=0; i<pdf.length; i++) {
-//	       out.writeInt(i);
-//	       out.writeByte(pdf[i]);
-//	    }
 	}
 
 	@Override
 	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
 		 in.readFully(pdf, 0, pdf.length);
-//		 int len = in.readInt();
-//		 pdf = new byte[len];
-//	     for (int i=0; i<len; i++) {
-//	        int index = in.readInt();
-//	        pdf[index] = in.readByte();
-//	        pdf[i] = in.readByte();
-//	     }
 	}
 }
