@@ -1,2 +1,3 @@
+br\com\convertpdftohtml\model\WrappedBankSlipResponse.class
 br\com\convertpdftohtml\rest\PdfToHtml.class
 br\com\convertpdftohtml\utils\ConvertPdfToHtml.class

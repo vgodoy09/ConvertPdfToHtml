@@ -5,8 +5,9 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-public class WrappedBankSlipResponse implements Externalizable {
+public class WrappedBankSlipResponse implements /*Serializable*/ Externalizable {
 
+//	private static final long serialVersionUID = 1L;
 	private byte[] pdf;
 
 	public WrappedBankSlipResponse() {}
